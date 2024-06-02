@@ -4,7 +4,7 @@ import (
 	patterns "golang-design-patterns/internal/patterns"
 )
 
-func main() {
+func mediator() {
 	stationManager := patterns.NewStationManager()
 
 	passengerTrain1 := &patterns.PassengerTrain{
@@ -20,5 +20,31 @@ func main() {
 	passengerTrain1.Arrive()
 	passengerTrain2.Arrive()
 	passengerTrain1.Depart()
+}
 
+func command() {
+	tv := &patterns.Tv{}
+
+	onCommand := &patterns.OnCommand{
+		Device: tv,
+	}
+
+	offCommand := &patterns.OffCommand{
+		Device: tv,
+	}
+
+	onButton := &patterns.Button{
+		Command: onCommand,
+	}
+	onButton.Press()
+
+	offButton := &patterns.Button{
+		Command: offCommand,
+	}
+	offButton.Press()
+}
+
+func main() {
+	mediator()
+	command()
 }
